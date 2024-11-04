@@ -138,7 +138,7 @@ function Tables(prop) {
                                                 <i className="fas fa-fw fa-table" />
                                                 <span>View</span>
                                             </button> */}
-                                            <Link className="btn btn-primary btn-sm " to={`/Tables/View/${data}`} type="button">View</Link>
+                                            <Link className="btn btn-primary btn-sm " to={`/Tables/View/${data.id}`} type="button">View</Link>
                                             <button className="btn btn-success btn-sm" type="button">Info</button>
                                             <button className="btn btn-danger btn-sm" type="button">Delete</button>
                                         </tr>
