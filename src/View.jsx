@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 
 function View() {
     let {id}=useParams()
-    console.log(id)
+    console.log(id.id)
     return(
        
-        <div>i ams</div>
+        <div>{id.id}</div>
     )
 }
 export default View;

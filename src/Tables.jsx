@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function Tables(prop) {
-    const employees = [
+    let employees = [
         {   id:1,
             Name: "Tiger Nixon",
             Position: "System Architect",
@@ -98,7 +98,7 @@ function Tables(prop) {
                      
                         <div className="card-body">
                             <div className="table-responsive">
-                                 <div><button className="btn btn-primary btn-sm" type="button">Button</button></div>
+                                 <Link className="btn btn-primary btn-sm" type="button" to={`/Tables/Createuser`}>Button</Link>
                                 <table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
@@ -125,8 +125,9 @@ function Tables(prop) {
 
                             <tbody>
                                 {employees.map((data) => {
-                                    return (
+                                    return ( 
                                         <tr>
+                                            
                                             <td>{data.Name}</td>
                                             <td>{data.Position}</td>
                                             <td>{data.Office}</td>
@@ -137,7 +138,7 @@ function Tables(prop) {
                                                 <i className="fas fa-fw fa-table" />
                                                 <span>View</span>
                                             </button> */}
-                                            <Link className="btn btn-primary btn-sm nav-link" to={`/Tables/View/${data}`} type="button">View</Link>
+                                            <Link className="btn btn-primary btn-sm " to={`/Tables/View/${data}`} type="button">View</Link>
                                             <button className="btn btn-success btn-sm" type="button">Info</button>
                                             <button className="btn btn-danger btn-sm" type="button">Delete</button>
                                         </tr>

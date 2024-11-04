@@ -12,6 +12,7 @@ import Project_Card from "./Project _Card";
 import Components from "./Components";
 import Tables from "./Tables";
 import Viwe from "./View";
+import Createuser from "./Createuser";
 
 import { HashRouter, Route, Router, Routes } from "react-router-dom";
 
@@ -32,6 +33,7 @@ function App() {
                   <Route path="/Project_Card" element={<Project_Card/>}/>
                   <Route path="/Tables" element={<Tables/>}/>
                   <Route path="/Tables/View/:id" element={<Viwe/>}/>
+                  <Route path="/Tables/Createuser" element={<Createuser/>}/>
                 </Routes>
               </div>
             </div>
