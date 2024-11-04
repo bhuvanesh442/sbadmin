@@ -4,7 +4,8 @@ function View() {
     let {id}=useParams()
     console.log(id)
     return(
-        <div>{id.Name}</div>
+       
+        <div>i ams</div>
     )
 }
 export default View;
