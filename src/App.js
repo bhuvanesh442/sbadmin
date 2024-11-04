@@ -13,6 +13,7 @@ import Components from "./Components";
 import Tables from "./Tables";
 import Viwe from "./View";
 import Createuser from "./Createuser";
+import Info from "./Info";
 
 import { HashRouter, Route, Router, Routes } from "react-router-dom";
 
@@ -32,8 +33,9 @@ function App() {
                   <Route path="/Components" element={<Components/>}/>
                   <Route path="/Project_Card" element={<Project_Card/>}/>
                   <Route path="/Tables" element={<Tables/>}/>
-                  <Route path="/Tables/View/:id" element={<Viwe/>}/>
+                  <Route path="Tables/View/:id" element={<Viwe/>}/>
                   <Route path="/Tables/Createuser" element={<Createuser/>}/>
+                  <Route path="/Tables/Info/:id" element={<Info/>}/>
                 </Routes>
               </div>
             </div>
