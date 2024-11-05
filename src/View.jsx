@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useSearchParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function View() {
@@ -15,6 +15,8 @@ function View() {
     ];
 
     const { id } = useParams();
+    const [searchparams,getsearchparams]=useSearchParams()
+    console.log(...searchparams)
     // const employee = employees.find(emp => emp.id === parseInt(id));
 
     // if (!employee) {
