@@ -13,7 +13,8 @@ import Components from "./Components";
 import Tables from "./Tables";
 import Viwe from "./View";
 import Createuser from "./Createuser";
-import Info from "./Info";
+import Edit from "./Edit";
+import axios from "axios";
 
 import { HashRouter, Route, Router, Routes } from "react-router-dom";
 
@@ -35,7 +36,7 @@ function App() {
                   <Route path="/Tables" element={<Tables/>}/>
                   <Route path="Tables/View/:id" element={<Viwe/>}/>
                   <Route path="/Tables/Createuser" element={<Createuser/>}/>
-                  <Route path="/Tables/Info/:id" element={<Info/>}/>
+                  <Route path="/Tables/Edit/:edituser" element={<Edit/>}/>
                 </Routes>
               </div>
             </div>

@@ -1,8 +1,10 @@
 import { Link, useNavigate, useNavigation, useParams, useRoutes, useSearchParams } from "react-router-dom";
 import { Formik, useFormik } from 'formik';
 import axios, { Axios } from "axios";
-function Createuser() {
-    // console.log("oiksk")
+import { useEffect } from "react";
+function Edit() {
+    let {edituser}=useParams()
+
     let Navigation=useNavigate()
     let newuser = useFormik({
         initialValues: {
@@ -38,14 +40,34 @@ function Createuser() {
          },
         onSubmit: async (values) => {
          try {
-               // console.log(values)
-          await axios.post("https://670b53baac6860a6c2cbbe07.mockapi.io/users",values)
-        Navigation("/Tables")
+            await axios.put(`https://670b53baac6860a6c2cbbe07.mockapi.io/users/${edituser}`, values);
+            Navigation("/Tables"); 
          } catch (error) {
-            
+            alert("somthing went to wrong")
          }
          }
-    })
+
+    });
+
+   
+
+    useEffect(()=>{
+        let fetchdata = async ()=>{
+       
+          try {
+            let empdata=  await axios.get(`https://670b53baac6860a6c2cbbe07.mockapi.io/users/${edituser}`)
+            newuser.setValues(empdata.data)
+        } catch (error) {
+            alert("somthing went to wrong")
+          }
+            // getemploye(empdata.data)
+            // // fetchdata()
+        
+           
+        }
+        fetchdata()
+    },[edituser])
+    
     return (
         <div className="container">
             <form onSubmit={newuser.handleSubmit}>
@@ -142,26 +164,7 @@ function Createuser() {
                 </div>
             </form>
         </div>
-        //     <div classname="row">
-        //     <div classname="col">
-        //       <input
-        //         type="text"
-        //         classname="form-control"
-        //         placeholder="First name"
-        //         aria-label="First name"
-        //       />
-        //     </div>
-        //     <div classname="col">
-        //       <input
-        //         type="text"
-        //         classname="form-control"
-        //         placeholder="Last name"
-        //         aria-label="Last name"
-        //       />
-        //     </div>
-        //   </div>
-
-
-    )
+  )
+    
 }
-export default Createuser;
+export default Edit;
