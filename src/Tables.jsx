@@ -5,15 +5,17 @@ import { useEffect, useState } from "react";
 
 function Tables() {
     const [employees,getemploye]=useState([])
+    const [losding,setloading]=useState()
     useEffect(()=>{
         
         fetchdata()
     },[])
     let fetchdata = async ()=>{
-       
+        setloading(true)
         let empdata=  await axios.get("/users")
         getemploye(empdata.data)
         // fetchdata()
+        setloading(false)
     }
   
     // [
@@ -43,69 +45,72 @@ function Tables() {
             <p className="mb-4">
                 This table displays employee data with options to view, edit, or delete each entry.
             </p>
-       
-            {/* DataTables Example */}
-            <div className="card shadow mb-4">
-                <div className="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 className="m-0 font-weight-bold text-primary">Employee List</h6>
-                    <Link className="btn btn-primary btn-sm" to="/Tables/Createuser">
-                        Add New Employee
-                    </Link>
-                </div>
-                     
-                <div className="card-body">
-                    <div className="table-responsive">
-                        <table className="table table-bordered table-hover" id="dataTable" width="100%" cellSpacing="0">
-                            <thead className="thead-light">
-                                <tr>
-                                    <th>no.of</th>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start Date</th>
-                                    <th>Salary</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>no.of</th>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start Date</th>
-                                    <th>Salary</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                {employees.map((data,index) => (
-                                    
-                                    <tr key={data.id}>
-                                        <td>{index+1}</td>
-                                        <td>{data.Name}</td>
-                                        <td>{data.Position}</td>
-                                        <td>{data.Office}</td>
-                                        <td>{data.Age}</td>
-                                        <td>{data.StartDate}</td>
-                                        <td>{data.Salary}</td>
-                                        <td>
-                                            <div className="btn-group" role="group">
-                                                <Link className="btn btn-primary btn-sm" to={`/Tables/View/${data.id}`}>View</Link>
-                                                <Link className="btn btn-success btn-sm" type="button"  to={`/Tables/Edit/${data.id}`}>Edit</Link>
-                                                <button className="btn btn-danger btn-sm" type="button"onClick={() => handleDelete(data.id)}>Delete</button>
-                                            </div>
-                                        </td>
+            {
+                    losding? <h1>is loading</h1>: <div className="card shadow mb-4">
+                    <div className="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 className="m-0 font-weight-bold text-primary">Employee List</h6>
+                        <Link className="btn btn-primary btn-sm" to="/Tables/Createuser">
+                            Add New Employee
+                        </Link>
+                    </div>
+                   
+                         
+                    <div className="card-body">
+                        <div className="table-responsive">
+                            <table className="table table-bordered table-hover" id="dataTable" width="100%" cellSpacing="0">
+                                <thead className="thead-light">
+                                    <tr>
+                                        <th>no.of</th>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start Date</th>
+                                        <th>Salary</th>
+                                        <th>Actions</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>no.of</th>
+                                        <th>Name</th>
+                                        <th>Position</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start Date</th>
+                                        <th>Salary</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {employees.map((data,index) => (
+                                        
+                                        <tr key={data.id}>
+                                            <td>{index+1}</td>
+                                            <td>{data.Name}</td>
+                                            <td>{data.Position}</td>
+                                            <td>{data.Office}</td>
+                                            <td>{data.Age}</td>
+                                            <td>{data.StartDate}</td>
+                                            <td>{data.Salary}</td>
+                                            <td>
+                                                <div className="btn-group" role="group">
+                                                    <Link className="btn btn-primary btn-sm" to={`/Tables/View/${data.id}`}>View</Link>
+                                                    <Link className="btn btn-success btn-sm" type="button"  to={`/Tables/Edit/${data.id}`}>Edit</Link>
+                                                    <button className="btn btn-danger btn-sm" type="button"onClick={() => handleDelete(data.id)}>Delete</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+                }
+           
         </>
+    
     );
 }
 
