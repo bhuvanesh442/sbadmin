@@ -1,6 +1,6 @@
 import { Link, useNavigate, useNavigation, useParams, useRoutes, useSearchParams } from "react-router-dom";
 import { Formik, useFormik } from 'formik';
-import axios, { Axios } from "axios";
+import axios, { Axios } from "./Axiosapi";
 import { useEffect } from "react";
 function Edit() {
     let {edituser}=useParams()
@@ -40,7 +40,7 @@ function Edit() {
          },
         onSubmit: async (values) => {
          try {
-            await axios.put(`https://670b53baac6860a6c2cbbe07.mockapi.io/users/${edituser}`, values);
+            await axios.put(`/users/${edituser}`, values);
             Navigation("/Tables"); 
          } catch (error) {
             alert("somthing went to wrong")
@@ -55,7 +55,7 @@ function Edit() {
         let fetchdata = async ()=>{
        
           try {
-            let empdata=  await axios.get(`https://670b53baac6860a6c2cbbe07.mockapi.io/users/${edituser}`)
+            let empdata=  await axios.get(`/users/${edituser}`)
             newuser.setValues(empdata.data)
         } catch (error) {
             alert("somthing went to wrong")

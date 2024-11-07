@@ -1,6 +1,6 @@
 import { Link, useParams,useSearchParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
+import axios from "./Axiosapi";
 import { useEffect, useState } from "react";
 
 function View() {
@@ -8,7 +8,7 @@ function View() {
     const [employees,getemploye]=useState([]);
     useEffect(()=>{
         let fetchdata = async ()=>{
-            let empdata =  await axios.get(`https://670b53baac6860a6c2cbbe07.mockapi.io/users/${id}`)
+            let empdata =  await axios.get(`/users/${id}`)
             getemploye(empdata.data)
         }
         fetchdata()

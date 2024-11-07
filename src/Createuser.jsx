@@ -1,6 +1,6 @@
 import { Link, useNavigate, useNavigation, useParams, useRoutes, useSearchParams } from "react-router-dom";
 import { Formik, useFormik } from 'formik';
-import axios, { Axios } from "axios";
+import axios, { Axios } from "./Axiosapi";
 function Createuser() {
     // console.log("oiksk")
     let Navigation=useNavigate()
@@ -39,7 +39,7 @@ function Createuser() {
         onSubmit: async (values) => {
          try {
                // console.log(values)
-          await axios.post("https://670b53baac6860a6c2cbbe07.mockapi.io/users",values)
+          await axios.post("/users",values)
         Navigation("/Tables")
          } catch (error) {
             

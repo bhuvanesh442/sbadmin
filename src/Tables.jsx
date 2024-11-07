@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "./Axiosapi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 
@@ -11,7 +11,7 @@ function Tables() {
     },[])
     let fetchdata = async ()=>{
        
-        let empdata=  await axios.get("https://670b53baac6860a6c2cbbe07.mockapi.io/users")
+        let empdata=  await axios.get("/users")
         getemploye(empdata.data)
         // fetchdata()
     }
@@ -29,7 +29,7 @@ function Tables() {
     // ];
 
     const handleDelete = async (id) => {
-        await axios.delete(`https://670b53baac6860a6c2cbbe07.mockapi.io/users/${id}`)
+        await axios.delete(`/users/${id}`)
         fetchdata()
         // let ask=window.confirm("do want to delete")
         // if(ask){
