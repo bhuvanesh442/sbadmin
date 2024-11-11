@@ -15,6 +15,7 @@ import Viwe from "./View";
 import Createuser from "./Createuser";
 import Edit from "./Edit";
 import axios from "axios";
+import Utilities from "./Utilities";
 
 import { HashRouter, Route, Router, Routes } from "react-router-dom";
 
@@ -32,11 +33,13 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Dashboard />}/>
                   <Route path="/Components" element={<Components/>}/>
+                  <Route path="/Utilities" element={<Utilities/>}/>
                   <Route path="/Project_Card" element={<Project_Card/>}/>
                   <Route path="/Tables" element={<Tables/>}/>
                   <Route path="Tables/View/:id" element={<Viwe/>}/>
                   <Route path="/Tables/Createuser" element={<Createuser/>}/>
                   <Route path="/Tables/Edit/:edituser" element={<Edit/>}/>
+                
                 </Routes>
               </div>
             </div>

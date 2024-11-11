@@ -6,13 +6,15 @@ import { useEffect, useState } from "react";
 function Tables() {
     const [employees,getemploye]=useState([])
     const [losding,setloading]=useState()
+    const [text,settext]=useState("")
     useEffect(()=>{
         
         fetchdata()
     },[])
     let fetchdata = async ()=>{
         setloading(true)
-        let empdata=  await axios.get("/users")
+        let empdata=text 
+        ? await axios.get(`/users?Name=${text}`)  : await axios.get(`/users`)
         getemploye(empdata.data)
         // fetchdata()
         setloading(false)
@@ -49,6 +51,14 @@ function Tables() {
                     losding? <h1>is loading</h1>: <div className="card shadow mb-4">
                     <div className="card-header py-3 d-flex justify-content-between align-items-center">
                         <h6 className="m-0 font-weight-bold text-primary">Employee List</h6>
+                        <input
+                            type="text"
+                            placeholder="Search by name"
+                            value={text}
+                            onChange={(e) => settext(e.target.value)}></input>
+                            <button className="btn btn-secondary btn-sm" onClick={fetchdata}>
+                            Search
+                        </button>
                         <Link className="btn btn-primary btn-sm" to="/Tables/Createuser">
                             Add New Employee
                         </Link>
